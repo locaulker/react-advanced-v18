@@ -3,6 +3,7 @@ import React, { useState } from "react"
 const UseStateCounter = () => {
   const [value, setValue] = useState(0)
 
+  // reference function
   const resetValue = () => {
     setValue(0)
   }
