@@ -1,5 +1,5 @@
 import React from "react"
-import Setup from "./tutorial/01-useState/setup/5-useState-counter"
+import Setup from "./tutorial/02-useEffect/setup/2-useEffect-cleanup"
 
 function App() {
   return (
