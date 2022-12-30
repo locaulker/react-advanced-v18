@@ -5,8 +5,13 @@ const UseStateArray = () => {
   const [people, setPeople] = React.useState(data)
 
   const removeItem = id => {
-    const newPeople = people.filter(person => person.id !== id)
-    setPeople(newPeople)
+    /**
+     * Collect all items in the rederedPeople array
+     * that do not match the id that is passed from
+     * the removeItem function when clicked
+     */
+    const renderedPeople = people.filter(person => person.id !== id)
+    setPeople(renderedPeople)
   }
 
   return (
