@@ -9,8 +9,9 @@ const UseEffectSecondArgument = () => {
 
   const getUsers = async () => {
     const response = await fetch(url)
-    const users = await response.json()
-    console.log(users)
+    const githubUsers = await response.json()
+    setUsers(githubUsers)
+    console.log(githubUsers)
   }
 
   useEffect(() => {
@@ -20,6 +21,20 @@ const UseEffectSecondArgument = () => {
   return (
     <>
       <h3>github Users</h3>
+      <ul className="users">
+        {users.map(user => {
+          const { id, login, avatar_url, html_url } = user
+          return (
+            <li key={id}>
+              <img src={avatar_url} alt={login} />
+              <div>
+                <h4>{login}</h4>
+                <a href={html_url}>Profile</a>
+              </div>
+            </li>
+          )
+        })}
+      </ul>
     </>
   )
 }
