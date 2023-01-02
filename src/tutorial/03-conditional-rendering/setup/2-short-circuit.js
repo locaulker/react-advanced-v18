@@ -3,11 +3,12 @@ import React, { useState } from "react"
 // ternary operator
 
 const ShortCircuit = () => {
-  const [text, setText] = useState("k")
+  const [text, setText] = useState("")
+  const [isError, setIsError] = useState(false)
 
   // Note: both cases will eveluate to a boolean (true or false)
 
-  const firstValue = text || "hello world"
+  // const firstValue = text || "hello world"
   /**
    *  CASE 1: THE || OPERATOR
    *    - text = " ", an empty string
@@ -16,7 +17,7 @@ const ShortCircuit = () => {
    *    - the string after the OR operator can be printed
    */
 
-  const secondValue = text && "hello world"
+  // const secondValue = text && "hello world"
   /**
    *  CASE 2: THE && OPERATOR
    *    - both first and second values are truthy (NOT empty)
@@ -29,8 +30,20 @@ const ShortCircuit = () => {
 
   return (
     <>
-      <h2>{firstValue}</h2>
-      <h2>{secondValue}</h2>
+      {/* <h2>{firstValue}</h2>
+      <h2>{secondValue}</h2> */}
+      <h1>{text || "John Doe"}</h1>
+      <button className="btn" onClick={() => setIsError(!isError)}>
+        Toggle Error
+      </button>
+      {isError && <h2>Error...</h2>}
+      {isError ? (
+        <p>There is an error...</p>
+      ) : (
+        <div>
+          <h2>There is no error</h2>
+        </div>
+      )}
     </>
   )
 }
