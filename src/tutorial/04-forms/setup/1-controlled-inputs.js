@@ -2,13 +2,16 @@ import React, { useState } from "react"
 // JS
 // const input = document.getElementById('myText');
 // const inputValue = input.value
-// React
-// value, onChange
+
+// In React, you wor with the following:
+// Youw ill deal with Controlled Inputs
+// A "state" value, and an the "onChange" eventHandler
 
 const ControlledInputs = () => {
   const handleSubmit = e => {
     e.preventDefault()
-    console.log("You submitted Me!")
+
+    console.log("Hello world")
   }
 
   return (
