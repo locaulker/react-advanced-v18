@@ -19,7 +19,7 @@ const ControlledInputs = () => {
       const person = {
         id: new Date().getTime().toString(),
         firstName: firstName,
-        email: email,
+        email: email
       }
       setPeople(() => {
         return [...people, person]
@@ -57,9 +57,7 @@ const ControlledInputs = () => {
               onChange={e => setEmail(e.target.value)}
             />
           </div>
-          <button type="submit" onClick={handleSubmit}>
-            Add A Person
-          </button>
+          <button type="submit">Add Person</button>
         </form>
 
         {/* Displaying the list on the screen */}
