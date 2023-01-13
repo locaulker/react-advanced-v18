@@ -3,28 +3,13 @@ import Modal from "./Modal"
 import { data } from "../../../data"
 
 // reducer function
-const reducer = (state, action) => {
-  if (action.type === "ADD_ITEM") {
-    const newPeople = [...state.people, action.payload]
-    return {
-      ...state,
-      people: newPeople,
-      isModalOpen: true,
-      modalContent: "Item Added"
-    }
-  }
-  if (action.type === "NO_VALUE") {
-    return { ...state, isModalOpen: true, modalContent: "Please enter value" }
-  }
-  // return state
-  throw new Error("Action type does not match")
-}
+import { reducer } from "./reducer"
 
 // the initial state
 const defaultState = {
   people: [],
   isModalOpen: false,
-  modalContent: ""
+  modalContent: "",
 }
 
 const Index = () => {
@@ -43,9 +28,15 @@ const Index = () => {
     }
   }
 
+  const closeModal = () => {
+    dispatch({ type: "CLOSE_MODAL" })
+  }
+
   return (
     <>
-      {state.isModalOpen && <Modal modalContent={state.modalContent} />}
+      {state.isModalOpen && (
+        <Modal closeModal={closeModal} modalContent={state.modalContent} />
+      )}
       <form onSubmit={handleSubmit} className="form">
         <div>
           <input
@@ -60,8 +51,14 @@ const Index = () => {
         const { id, name } = person
 
         return (
-          <div key={id}>
+          <div key={id} className="item">
             <h4>{name}</h4>
+            <button
+              type="submit"
+              onClick={() => dispatch({ type: "REMOVE_ITEM", payload: id })}
+            >
+              Remove
+            </button>
           </div>
         )
       })}
