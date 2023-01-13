@@ -1,23 +1,30 @@
 import React, { useState, useReducer } from "react"
 import Modal from "./Modal"
 import { data } from "../../../data"
+
 // reducer function
 const reducer = (state, action) => {
-  if (action.type === "TESTING") {
+  if (action.type === "ADD_ITEM") {
+    const newPeople = [...state.people, action.payload]
     return {
       ...state,
-      people: data,
+      people: newPeople,
       isModalOpen: true,
-      modalContent: "Item Added",
+      modalContent: "Item Added"
     }
   }
-  return state
+  if (action.type === "NO_VALUE") {
+    return { ...state, isModalOpen: true, modalContent: "Please enter value" }
+  }
+  // return state
+  throw new Error("Action type does not match")
 }
 
+// the initial state
 const defaultState = {
   people: [],
   isModalOpen: false,
-  modalContent: "",
+  modalContent: ""
 }
 
 const Index = () => {
@@ -26,9 +33,13 @@ const Index = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
+
     if (name) {
-      dispatch({ type: "TESTING" })
+      const newItem = { id: new Date().getTime().toString(), name: name }
+      dispatch({ type: "ADD_ITEM", payload: newItem })
+      setName("")
     } else {
+      dispatch({ type: "NO_VALUE" })
     }
   }
 
